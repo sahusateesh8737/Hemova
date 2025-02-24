@@ -1,0 +1,24 @@
+{
+  "name": "hemova",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @tailwindcss/cli -i ./src/main.css -o ./src/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahusateesh8737/Hemova.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahusateesh8737/Hemova/issues"
+  },
+  "homepage": "https://github.com/sahusateesh8737/Hemova#readme",
+  "keywords": [],
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.6",
+    "tailwindcss": "^4.0.6"
+  }
+}
