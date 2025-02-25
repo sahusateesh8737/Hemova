@@ -1,9 +1,12 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Signup</title>
 </head>
 <body>
 <!-- php code -->
@@ -33,10 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!$connection) {
                 die("Connection failed: " . mysqli_connect_error());
             } else {
-                $sql = "INSERT INTO `signup` (`id`, `name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES (NULL, '$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$password')";
+                // Hash the password before storing it in the database
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO `signup` (`id`, `name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES (NULL, '$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$hashed_password')";
 
                 if (mysqli_query($connection, $sql)) {
+                    // Store user information in session variables
+                    $_SESSION['currUserID'] = mysqli_insert_id($connection);
+                    $_SESSION['name'] = $name;
+                    $_SESSION['email'] = $email;
+
                     echo "Account created successfully";
+                    // Redirect to home page
+                    header("Location: login.php");
+                    exit();
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($connection);
                 }
@@ -51,6 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div>
+    <div>
+        <h1>Registration</h1>
+    </div>
     <form action="" method="POST">
         <label for="name">Name</label>
         <input type="text" name="name" required>
@@ -93,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br>
         <input type="submit" value="signup">
     </form>
+    <a href="./login.php">already registered</a>
 </div>
 </body>
 </html>
