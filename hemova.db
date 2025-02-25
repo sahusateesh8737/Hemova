@@ -1,0 +1,33 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneno VARCHAR(20) NOT NULL,
+    age INT NOT NULL,
+    gender ENUM('male', 'female', 'other') NOT NULL,
+    blood_group ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') NOT NULL,
+    disease ENUM('yes', 'no') NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+$sql = "CREATE TABLE signup (\n"
+
+    . "    id INT AUTO_INCREMENT PRIMARY KEY,\n"
+
+    . "    name VARCHAR(255) NOT NULL,\n"
+
+    . "    email VARCHAR(255) NOT NULL,\n"
+
+    . "    phoneno VARCHAR(20) NOT NULL,\n"
+
+    . "    age INT NOT NULL,\n"
+
+    . "    gender ENUM(\'male\', \'female\', \'other\') NOT NULL,\n"
+
+    . "    blood_group ENUM(\'A+\', \'A-\', \'B+\', \'B-\', \'AB+\', \'AB-\', \'O+\', \'O-\') NOT NULL,\n"
+
+    . "    disease ENUM(\'yes\', \'no\') NOT NULL,\n"
+
+    . "    password VARCHAR(255) NOT NULL\n"
+
+    . ");";
