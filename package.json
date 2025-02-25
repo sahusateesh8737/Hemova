@@ -18,7 +18,9 @@
   "homepage": "https://github.com/sahusateesh8737/Hemova#readme",
   "keywords": [],
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.6",
-    "tailwindcss": "^4.0.6"
+    "@tailwindcss/cli": "^4.0.6"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.8"
   }
 }
