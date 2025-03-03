@@ -32,17 +32,17 @@ $user = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
 </head>
-<body>
-    <div>
-        <h1>User Profile</h1>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">User Profile</h1>
         <div>
-            <p><strong>Name:</strong> <?php echo htmlspecialchars($user['name']); ?></p>
-            <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
-            <p><strong>Phone Number:</strong> <?php echo htmlspecialchars($user['phoneno']); ?></p>
-            <p><strong>Age:</strong> <?php echo htmlspecialchars($user['age']); ?></p>
-            <p><strong>Gender:</strong> <?php echo htmlspecialchars($user['gender']); ?></p>
-            <p><strong>Blood Group:</strong> <?php echo htmlspecialchars($user['blood_group']); ?></p>
-            <p><strong>Has Disease:</strong> <?php echo htmlspecialchars($user['disease']); ?></p>
+            <p class="mb-2"><strong>Name:</strong> <?php echo htmlspecialchars($user['name']); ?></p>
+            <p class="mb-2"><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+            <p class="mb-2"><strong>Phone Number:</strong> <?php echo htmlspecialchars($user['phoneno']); ?></p>
+            <p class="mb-2"><strong>Age:</strong> <?php echo htmlspecialchars($user['age']); ?></p>
+            <p class="mb-2"><strong>Gender:</strong> <?php echo htmlspecialchars($user['gender']); ?></p>
+            <p class="mb-2"><strong>Blood Group:</strong> <?php echo htmlspecialchars($user['blood_group']); ?></p>
+            <p class="mb-2"><strong>Has Disease:</strong> <?php echo htmlspecialchars($user['disease']); ?></p>
         </div>
         <a href="logout.php">Logout</a>
     </div>
