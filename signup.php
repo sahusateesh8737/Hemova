@@ -9,19 +9,29 @@ session_start();
 
     <title>Document</title>
     <link rel="stylesheet" href="./src/output.css">
-
-    <title>Signup</title>
     <style>
-        body {
-            background-image: url('blood.jpg');
+        .bg-image {
+            background-image: url('./blood2.png');
             background-size: cover;
-            background-attachment: fixed;
-            /* background-position: center; */
-            opacity: 0.9;
+            background-position: center;
+            position: relative;
+        }
+        
+        .bg-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            z-index: -1;
         }
     </style>
 </head>
-<body class="">
+<body class="bg-image bg-gray-100 flex items-center justify-center min-h-screen">
 <!-- php code -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -76,9 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="bg-white rounded-lg p-8  h-7 max-w-md  mb-10 mt-5 ml-130 mx-auto flex flex-col items-center shadow-lg ">
-    <div>
-        <h1 class="text-2xl font-bold text-gray-800">Registration</h1>
+<div class="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md backdrop-blur-md">
+    <div class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-red-600">Sign Up</h1>
     </div>
     <form action="" method="POST" class="w-full ">  
         <div>
@@ -143,8 +153,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="confirm_password" class="block text-gray-700 font-bold">Confirm Password</label>
             <input type="password" name="confirm_password" class="border border-gray-300 rounded-lg w-full p-2" required>
         </div>
-        <div >
-            <input type="submit" value="Signup" class="bg-red-500 text-white rounded-lg w-full p-2 hover:bg-red-600">
+
+        <div class="flex items-center justify-between">
+            <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" type="submit" value="Sign Up">
+        </div>
+        
+        <div class="text-center mt-4">
+            <a class="text-sm text-red-600 hover:text-red-800 font-medium" href="./login.php">
+                Already registered?
+            </a>
         </div>
     </form>
     <a href="./login.php" class="text-blue-500 hover:underline">Already registered?</a>

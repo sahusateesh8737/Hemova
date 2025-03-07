@@ -3,13 +3,14 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./src/output.css">
 </head>
 
-<body>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -57,26 +58,35 @@ session_start();
         }
     }
     ?>
-    <div>
-        <h3>Sign In</h3>
-        <div>
+    
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-red-600">Sign In</h3>
+        </div>
+        
+        <div class="bg-red-100 p-6 rounded-lg">
             <form action="" method="post">
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Email" required="">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="email">Email</label>
+                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+                           type="email" name="email" id="email" placeholder="Enter your email" required>
                 </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="*****" required="">
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700" for="password">Password</label>
+                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+                           type="password" name="password" id="password" placeholder="Enter your password" required>
                 </div>
-                <input type="submit" name="submit" value="Sign In">
+                
+                <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer" 
+                       type="submit" name="submit" value="Sign In">
 
-                <!-- <a href="#"><small>Forgot your password?</small></a> -->
-                <p><small>Do not have an account?</small></p>
-                <a href="./signup.php"><small>Register</small></a>
+                <div class="text-center mt-4">
+                    <p class="text-sm text-gray-600">Do not have an account?</p>
+                    <a href="./signup.php" class="text-sm text-red-600 hover:text-red-800 font-medium">Register</a>
+                </div>
             </form>
         </div>
     </div>
 </body>
-
 </html>
