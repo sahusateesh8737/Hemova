@@ -7,9 +7,30 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-   <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <style>
+        .bg-image {
+            background-image: url('./blood2.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .bg-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            z-index: -1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-image bg-gray-100 flex items-center justify-center min-h-screen">
 <!-- php code -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -64,53 +85,86 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div>
-    <div class="bg-orange-500 text-white ">
-        <h1>Registration</h1>
-    </div> 
-    <form action="" method="POST">
-        <label for="name">Name</label>
-        <input type="text" name="name" required>
-        <br>
-        <label for="email">Email</label>
-        <input type="email" name="email" required>
-        <br>
-        <label for="phoneno">PhoneNo</label>
-        <input type="tel" name="phoneno" required>
-        <br>
-        <label for="age">Age</label>
-        <input type="number" name="age" required>
-        <br>
-        <label for="gender">Gender</label>
-        <input type="radio" name="gender" value="male" required> Male
-        <input type="radio" name="gender" value="female" required> Female
-        <input type="radio" name="gender" value="other" required> Other
-        <br>
-        <label for="blood_group">Blood Group</label>
-        <select name="blood_group" required>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-        </select>
-        <br>
-        <label for="disease">Are you currently suffering from any disease?</label>
-        <input type="radio" name="disease" value="yes" required> Yes
-        <input type="radio" name="disease" value="no" required> No
-        <br>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <br>
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" name="confirm_password" required>
-        <br>
-        <input type="submit" value="signup">
+<div class="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md backdrop-blur-md">
+    <div class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-red-600">Sign Up</h1>
+    </div>
+    
+    <form action="" method="POST" class="bg-red-100 p-6 rounded-lg">
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="name">Full Name:</label>
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" type="text" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="email">Email:</label>
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="phoneno">Phone Number:</label>
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" type="tel" name="phoneno" placeholder="Phone Number" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="blood_group">Blood Group:</label>
+            <select class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" name="blood_group" required>
+                <option value="">Select your blood group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Gender:</label>
+            <select class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" name="gender" required>
+                <option value="">Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Are you currently suffering from any disease?</label>
+            <div class="mt-2 space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="disease" value="yes" required class="form-radio text-red-600">
+                    <span class="ml-2">Yes</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="disease" value="no" required class="form-radio text-red-600">
+                    <span class="ml-2">No</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="password">Password:</label>
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" type="password" name="password" required>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700" for="confirm_password">Confirm Password:</label>
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" type="password" name="confirm_password" required>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" type="submit" value="Sign Up">
+        </div>
+        
+        <div class="text-center mt-4">
+            <a class="text-sm text-red-600 hover:text-red-800 font-medium" href="./login.php">
+                Already registered?
+            </a>
+        </div>
     </form>
-    <a href="./login.php">already registered</a>
 </div>
 </body>
 </html>
