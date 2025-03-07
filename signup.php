@@ -8,29 +8,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="./src/output.css">
-    <style>
-        .bg-image {
-            background-image: url('./blood2.png');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .bg-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit;
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
-            z-index: -1;
-        }
-    </style>
 </head>
-<body class="bg-image bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 <!-- php code -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -85,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md backdrop-blur-md">
+<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
     <div class="text-center mb-6">
         <h1 class="text-2xl font-bold text-red-600">Sign Up</h1>
     </div>
@@ -160,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         
         <div class="text-center mt-4">
-            <a class="text-sm text-red-600 hover:text-red-800 font-medium" href="./login.php">
+            <a class="text-sm text-red-600 hover:text-red-800 font-medium" href="./signin.php">
                 Already registered?
             </a>
         </div>
