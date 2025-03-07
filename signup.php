@@ -6,32 +6,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
-    <link rel="stylesheet" href="./src/output.css">
-    <style>
-        .bg-image {
-            background-image: url('./blood2.png');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .bg-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit;
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
-            z-index: -1;
-        }
-    </style>
+    <title>Signup</title>
 </head>
-<body class="bg-image bg-gray-100 flex items-center justify-center min-h-screen">
+<body>
 <!-- php code -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -71,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     echo "Account created successfully";
                     // Redirect to home page
-                    header("Location: login.php");
+                    header("Location: home.php");
                     exit();
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -86,83 +63,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md backdrop-blur-md">
-    <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-red-600">Sign Up</h1>
+<div>
+    <div>
+        <h1>Registration</h1>
     </div>
-    <form action="" method="POST" class="w-full ">  
-        <div>
-            <label for="name" class="block text-gray-700 font-bold">Name</label>
-            <input type="text" name="name" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-        <div >
-            <label for="email" class="block text-gray-700 font-bold">Email</label>
-            <input type="email" name="email" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-        <div >
-            <label for="phoneno" class="block text-gray-700 font-bold">PhoneNo</label>
-            <input type="tel" name="phoneno" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-        <div >
-            <label for="age" class="block text-gray-700 font-bold">Age</label>
-            <input type="number" name="age" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-        <div class="mb-2">
-            <label for="gender" class="block text-gray-700 font-bold">Gender</label>
-            <div class="flex items-center space-x-8">
-                <label class="flex items-center">
-                    <input type="radio" name="gender" value="male" class="mr-2" required> Male
-                </label>
-                <label class="flex items-center">
-                    <input type="radio" name="gender" value="female" class="mr-2" required> Female
-                </label>
-                <label class="flex items-center">
-                    <input type="radio" name="gender" value="other" class="mr-2" required> Other
-                </label>
-            </div>
-        </div>
-        <div class="mb-2">
-            <label for="blood_group" class="block text-gray-700 font-bold">Blood Group</label>
-            <select name="blood_group" class="border border-gray-300 rounded-lg w-full p-2" required>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-            </select>
-        </div>
-        <div class="mb-2">
-            <label for="disease" class="block text-gray-700 font-bold">Are you currently suffering from any disease?</label>
-            <div class="flex items-center space-x-4">
-                <label class="flex items-center">
-                    <input type="radio" name="disease" value="yes" class="mr-2" required> Yes
-                </label>
-                <label class="flex items-center">
-                    <input type="radio" name="disease" value="no" class="mr-2" required> No
-                </label>
-            </div>
-        </div>
-        <div >
-            <label for="password" class="block text-gray-700 font-bold">Password</label>
-            <input type="password" name="password" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-        <div class="mb-2">
-            <label for="confirm_password" class="block text-gray-700 font-bold">Confirm Password</label>
-            <input type="password" name="confirm_password" class="border border-gray-300 rounded-lg w-full p-2" required>
-        </div>
-
-        <div class="flex items-center justify-between">
-            <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" type="submit" value="Sign Up">
-        </div>
-        
-        <div class="text-center mt-4">
-            <a class="text-sm text-red-600 hover:text-red-800 font-medium" href="./login.php">
-                Already registered?
-            </a>
-        </div>
+    <form action="" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" required>
+        <br>
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        <br>
+        <label for="phoneno">PhoneNo</label>
+        <input type="tel" name="phoneno" required>
+        <br>
+        <label for="age">Age</label>
+        <input type="number" name="age" required>
+        <br>
+        <label for="gender">Gender</label>
+        <input type="radio" name="gender" value="male" required> Male
+        <input type="radio" name="gender" value="female" required> Female
+        <input type="radio" name="gender" value="other" required> Other
+        <br>
+        <label for="blood_group">Blood Group</label>
+        <select name="blood_group" required>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <br>
+        <label for="disease">Are you currently suffering from any disease?</label>
+        <input type="radio" name="disease" value="yes" required> Yes
+        <input type="radio" name="disease" value="no" required> No
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" required>
+        <br>
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" required>
+        <br>
+        <input type="submit" value="signup">
     </form>
 </div>
 

@@ -2,10 +2,10 @@
 session_start();
 
 // Check if user is logged in
-if (!isset($_SESSION['currUserID'])) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isset($_SESSION['currUserID'])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 // Database connection
 $server = "localhost";
