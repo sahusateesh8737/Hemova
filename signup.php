@@ -164,9 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
         </div>
     </form>
-    <a href="./login.php" class="text-blue-500 hover:underline">Already registered?</a>
 </div>
-
 
 </body>
 </html>
