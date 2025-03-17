@@ -10,3 +10,24 @@ CREATE TABLE signup (
     password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE hospitals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE blood_camps (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hospital_id INT,
+    camp_name VARCHAR(255) NOT NULL,
+    location TEXT NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    details TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (hospital_id) REFERENCES hospitals(id) ON DELETE CASCADE
+);

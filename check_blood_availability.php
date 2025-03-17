@@ -3,7 +3,7 @@ session_start();
 include 'dbconnection.php';
 
 // Fetch data from the database
-$sql = "SELECT name, blood_group, disease, phoneno FROM signup";
+$sql = "SELECT name, blood_group, disease, phoneno FROM users";
 $result = mysqli_query($connection, $sql);
 ?>
 <!DOCTYPE html>

@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['email'] = $email;
 
                 // Redirect to home page
-                header("Location: home.php");
+                header("Location: index.php");
                 exit();
             } else {
                 echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";

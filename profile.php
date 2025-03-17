@@ -12,7 +12,7 @@ include 'dbconnection.php';
 
 // Fetch user data
 $user_id = $_SESSION['currUserID'];
-$sql = "SELECT * FROM signup WHERE id = '$user_id'";
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
 $result = mysqli_query($connection, $sql);
 $user = mysqli_fetch_assoc($result);
 ?> 
@@ -29,10 +29,10 @@ $user = mysqli_fetch_assoc($result);
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-md">
         <div class="container mx-auto p-4 flex justify-between items-center">
-            <a href="home.php" class="text-2xl font-bold">Hemova</a>
+            <a href="index.php" class="text-2xl font-bold">Hemova</a>
             <div>
                 <a href="profile.php" class="text-gray-700 hover:text-gray-900 mx-2">Profile</a>
-                <a href="settings.php" class="text-gray-700 hover:text-gray-900 mx-2">Settings</a>
+                <a href="check_blood_availability.php" class="text-gray-700 hover:text-gray-900 mx-2">Check Blood Availability</a>
                 <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
             </div>
         </div>
@@ -62,9 +62,6 @@ $user = mysqli_fetch_assoc($result);
             <div class="mb-4">
                 <p class="text-lg font-semibold"><strong>Has Disease:</strong> <?php echo htmlspecialchars($user['disease']); ?></p>
             </div>
-        </div>
-        <div class="text-center mt-6">
-            <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
         </div>
     </div>
 </body>

@@ -41,7 +41,7 @@ session_start();
                     echo '<div>
                     <strong>Success!</strong> Correct credentials.
                   </div>';
-                    header("Location: profile.php");
+                    header("Location: index.php");
                     exit();
                 } else {
                     echo '<div>
