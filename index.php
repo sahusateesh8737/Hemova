@@ -4,6 +4,7 @@ include 'dbconnection.php';
 
 // Check if user is logged in
 $isLoggedIn = isset($_SESSION['currUserID']);
+$isHospitalLoggedIn = isset($_SESSION['hospital_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,10 @@ $isLoggedIn = isset($_SESSION['currUserID']);
                 <?php if ($isLoggedIn): ?>
                     <a href="profile.php" class="text-gray-700 hover:text-gray-900 mx-2">Profile</a>
                     <a href="check_blood_availability.php" class="text-gray-700 hover:text-gray-900 mx-2">Check Blood Availability</a>
+                    <a href="view_camps.php" class="text-gray-700 hover:text-gray-900 mx-2">View Camps</a>
+                    <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
+                <?php elseif ($isHospitalLoggedIn): ?>
+                    <a href="managecamps.php" class="text-gray-700 hover:text-gray-900 mx-2">Manage Camps</a>
                     <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
                 <?php else: ?>
                     <a href="signin.php" class="text-gray-700 hover:text-gray-900 mx-2">Sign In</a>
