@@ -25,41 +25,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     // password check
-    if ($password != $confirm_password) {
+    if ($password !== $confirm_password) {
         echo "<p class='text-red-600'>Passwords didn't match</p>";
     } else {
         if ($name && $email && $phoneno && $age && $gender && $blood_group && $disease && $password && $confirm_password) {
             // Hash the password before storing it in the database
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES (NULL, '$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$hashed_password')";
-
+            $sql = "INSERT INTO `users` (`name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES ('$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$hashed_password')";
+        
             if (mysqli_query($connection, $sql)) {
                 // Store user information in session variables
                 $_SESSION['currUserID'] = mysqli_insert_id($connection);
                 $_SESSION['name'] = $name;
                 $_SESSION['email'] = $email;
-
-                // Redirect to home page
-                header("Location: index.php");
-                exit();
-            } else {
-                echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";
+                echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">';
+                echo '<strong class="font-bold">Registration Successful!</strong>';
+                echo '<span class="block sm:inline"> You have successfully registered.</span>';
+                echo '<a href="index.php" class="bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer block sm:inline mt-2 sm:mt-0">Go to Homepage</a>';
+                echo '</div>';
+                // Display a message and a button to go to the homepage
+            
+            
+           
+        } else {
+            echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";
             }
         } else {
             echo "<p class='text-red-600'>All fields are required.</p>";
         }
     }
-}
+    
+}   
 ?>
 
 <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+
+
     <div class="text-center mb-6">
         <h1 class="text-2xl font-bold text-red-600">Sign Up</h1>
     </div>
-    <form action="" method="POST" class="bg-red-100 p-6 rounded-lg">
+    <?php if(!isset($_SESSION['currUserID'])): ?>
+        <form action="" method="POST" class="bg-red-100 p-6 rounded-lg">
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700" for="name">Name</label>
-            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+            <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
                    type="text" name="name" id="name" placeholder="Enter your name" required>
         </div>
         
@@ -145,9 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                type="submit" value="Sign Up">
     </form>
     <div class="text-center mt-4">
-        <p class="text-sm text-gray-600">Already have an account?</p>
+         <p class="text-sm text-gray-600">Already have an account?</p>
         <a href="./signin.php" class="text-sm text-red-600 hover:text-red-800 font-medium">Sign In</a>
-    </div>
+     </div>
+     <?php endif; ?>
 </div>
 
 </body>
