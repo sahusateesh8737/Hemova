@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'dbconnection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,40 +26,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // password check
     if ($password != $confirm_password) {
-        echo "password didn't match";
+        echo "<p class='text-red-600'>Passwords didn't match</p>";
     } else {
         if ($name && $email && $phoneno && $age && $gender && $blood_group && $disease && $password && $confirm_password) {
-            $server = "localhost";
-            $username = "root";
-            $pass = "";
-            $database = "hemova";
-            $connection = mysqli_connect($server, $username, $pass, $database);
+            // Hash the password before storing it in the database
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES (NULL, '$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$hashed_password')";
 
-            if (!$connection) {
-                die("Connection failed: " . mysqli_connect_error());
+            if (mysqli_query($connection, $sql)) {
+                // Store user information in session variables
+                $_SESSION['currUserID'] = mysqli_insert_id($connection);
+                $_SESSION['name'] = $name;
+                $_SESSION['email'] = $email;
+
+                // Redirect to home page
+                header("Location: home.php");
+                exit();
             } else {
-                // Hash the password before storing it in the database
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO `signup` (`id`, `name`, `email`, `phoneno`, `age`, `gender`, `blood_group`, `disease`, `password`) VALUES (NULL, '$name', '$email', '$phoneno', '$age', '$gender', '$blood_group', '$disease', '$hashed_password')";
-
-                if (mysqli_query($connection, $sql)) {
-                    // Store user information in session variables
-                    $_SESSION['currUserID'] = mysqli_insert_id($connection);
-                    $_SESSION['name'] = $name;
-                    $_SESSION['email'] = $email;
-
-                    echo "Account created successfully";
-                    // Redirect to home page
-                    header("Location: home.php");
-                    exit();
-                } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-                }
-
-                mysqli_close($connection);
+                echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";
             }
         } else {
-            echo "All fields are required.";
+            echo "<p class='text-red-600'>All fields are required.</p>";
         }
     }
 }
@@ -155,12 +143,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer" 
                type="submit" value="Sign Up">
-               
-        <div class="text-center mt-4">
-            <p class="text-sm text-gray-600">Already have an account?</p>
-            <a href="./signin.php" class="text-sm text-red-600 hover:text-red-800 font-medium">Sign In</a>
-        </div>
     </form>
+    <div class="text-center mt-4">
+        <p class="text-sm text-gray-600">Already have an account?</p>
+        <a href="./signin.php" class="text-sm text-red-600 hover:text-red-800 font-medium">Sign In</a>
+    </div>
 </div>
 
 </body>

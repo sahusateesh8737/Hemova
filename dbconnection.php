@@ -1,13 +1,13 @@
 <?php
-$server= "localhost";
+$server = "localhost";
 $username = "root";
 $pass = "";
 $database = "hemova";
-$connection = mysqli_connect($server,$username,$pass,$database);
-if($connection){
-    echo "connection succesfully";
-}
-else{
-    die("error".mysqli_connect_error());
+$connection = mysqli_connect($server, $username, $pass, $database);
+
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+} else {
+    // echo "Connection successful!";
 }
 ?>
