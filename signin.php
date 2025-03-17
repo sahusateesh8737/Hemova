@@ -38,11 +38,15 @@ session_start();
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['email'] = $row['email'];
 
-                    echo '<div>
-                    <strong>Success!</strong> Correct credentials.
+                    echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Login Successful!</strong>
+                    <span class="block sm:inline"> You have successfully logged in.</span>
+                    <div class="mt-4">
+                        <a href="index.php" class="bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Go to Homepage
+                        </a>
+                    </div>
                   </div>';
-                    header("Location: index.php");
-                    exit();
                 } else {
                     echo '<div>
                     <strong>Warning!</strong> Incorrect password.
