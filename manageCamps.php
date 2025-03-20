@@ -54,7 +54,7 @@ $result = $stmt->get_result();
         <h1 class="text-3xl font-bold mb-4 text-center">Manage Blood Donation Camps</h1>
         <div class="bg-white shadow-md rounded-lg p-6 mb-6">
             <h2 class="text-2xl font-bold mb-4">Add New Camp</h2>
-            <form action="managecamps.php" method="POST">
+            <form action="manageCamps.php" method="POST">
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="name">Camp Name</label>
                     <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
@@ -68,12 +68,12 @@ $result = $stmt->get_result();
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="date">Date</label>
                     <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="date" name="date" id="date">
+                           type="date" name="date" id="date" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="time">Time</label>
                     <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="time" name="time" id="time">
+                           type="time" name="time" id="time" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="description">Description</label>
@@ -108,7 +108,7 @@ $result = $stmt->get_result();
                             echo "<td class='py-2 px-4 border-b border-gray-200'>" . htmlspecialchars($row['time']) . "</td>";
                             echo "<td class='py-2 px-4 border-b border-gray-200'>" . htmlspecialchars($row['description']) . "</td>";
                             echo "<td class='py-2 px-4 border-b border-gray-200'>";
-                            echo "<form action='manage_camps.php' method='POST' class='inline'>";
+                            echo "<form action='manageCamps.php' method='POST' class='inline'>";
                             echo "<input type='hidden' name='camp_id' value='" . $row['id'] . "'>";
                             echo "<input type='submit' name='delete_camp' value='Delete' class='bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer'>";
                             echo "</form>";
