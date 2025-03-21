@@ -38,17 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['currUserID'] = mysqli_insert_id($connection);
                 $_SESSION['name'] = $name;
                 $_SESSION['email'] = $email;
-                echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">';
-                echo '<strong class="font-bold">Registration Successful!</strong>';
-                echo '<span class="block sm:inline"> You have successfully registered.</span>';
-                echo '<a href="index.php" class="bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer block sm:inline mt-2 sm:mt-0">Go to Homepage</a>';
-                echo '</div>';
-                // Display a message and a button to go to the homepage
-            
-            
-           
-        } else {
-            echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";
+
+                // Redirect to the homepage
+                header("Location: index.php");
+                exit(); // Ensure no further code is executed after the redirect
+            } else {
+                echo "<p class='text-red-600'>Error: " . $sql . "<br>" . mysqli_error($connection) . "</p>";
             }
         } else {
             echo "<p class='text-red-600'>All fields are required.</p>";
