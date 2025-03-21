@@ -16,7 +16,7 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
 </head>
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white shadow-md "> ">
         <div class="container mx-auto p-4 flex justify-between items-center">
             <a href="index.php" class="text-2xl font-bold">Hemova</a>
             <div>
