@@ -2,7 +2,7 @@
 session_start();
 include 'dbconnection.php';
 
-// Fetch data from the database
+
 $sql = "SELECT name, blood_group, disease, phoneno FROM users";
 $result = mysqli_query($connection, $sql);
 ?>
@@ -15,11 +15,12 @@ $result = mysqli_query($connection, $sql);
     <link rel="stylesheet" href="./src/output.css">
 </head>
 <body class="bg-gray-100">
-    <!-- Navigation Bar -->
+    
     <nav class="bg-white shadow-md">
         <div class="container mx-auto p-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold">Hemova</a>
             <div>
+                <a href="index.php" class="text-gray-700 hover:text-gray-900 mx-2">Home</a>
                 <a href="profile.php" class="text-gray-700 hover:text-gray-900 mx-2">Profile</a>
                 <a href="settings.php" class="text-gray-700 hover:text-gray-900 mx-2">Settings</a>
                 <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>

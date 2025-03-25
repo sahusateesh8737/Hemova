@@ -27,10 +27,11 @@ $user = mysqli_fetch_assoc($result);
 </head>
 <body class="bg-red-400">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto p-4 flex justify-between items-center">
             <a href="index.php" class="text-2xl font-bold">Hemova</a>
             <div>
+            <a href="index.php" class="text-gray-700 hover:text-gray-900 mx-2">Home</a>
                 <a href="profile.php" class="text-gray-700 hover:text-gray-900 mx-2">Profile</a>
                 <a href="check_blood_availability.php" class="text-gray-700 hover:text-gray-900 mx-2">Check Blood Availability</a>
                 <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
