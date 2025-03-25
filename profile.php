@@ -38,7 +38,7 @@ $user = mysqli_fetch_assoc($result);
         </div>
     </nav>
 
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-red-300">
         <div class="container mx-auto p-4 max-w-lg">
             <h1 class="text-3xl font-bold mb-4 text-center">User Profile</h1>
             <div class="bg-white shadow-md rounded-lg p-6">
