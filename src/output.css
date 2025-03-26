@@ -451,7 +451,7 @@
   }
   img, svg, video, canvas, audio, iframe, embed, object {
     display: block;
-    /* Removed vertical-align as it is not applicable with display: block */
+    vertical-align: middle;
   }
   img, video {
     max-width: 100%;
@@ -849,7 +849,6 @@
     display: block;
     -webkit-box-orient: horizontal;
     -webkit-line-clamp: unset;
-    line-clamp: unset;
   }
   .block {
     display: block;
@@ -2735,7 +2734,9 @@
   .forced-color-adjust-none {
     forced-color-adjust: none;
   }
-  /* Removed empty ruleset for .[keywords:node-addon-api] */
+  .\[keywords\:node-addon-api\] {
+    keywords: node-addon-api;
+  }
   .backface-hidden {
     backface-visibility: hidden;
   }
