@@ -1,11 +1,9 @@
-module.exports = {
-  content: [
-    "./*.php",
-    "./**/*.php",
-    "./src/**/*.html",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+export const content = [
+  "./*.php",
+  "./**/*.php",
+  "./src/**/*.html",
+];
+export const theme = {
+  extend: {},
 };
+export const plugins = [];
