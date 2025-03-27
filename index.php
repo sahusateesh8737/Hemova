@@ -14,6 +14,61 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     <title>Home - Hemova</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    .flip-card {
+        background-color: transparent;
+        width: 350px;
+        height: 450px;
+        perspective: 1000px;
+        font-family: sans-serif;
+    }
+
+    .title {
+        font-size: 1.5em;
+        font-weight: 900;
+        text-align: center;
+        margin: 0;
+        color: darkred; /* Dark red font color */
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border: 1px solid coral;
+        border-radius: 1rem;
+    }
+
+    .flip-card-front {
+        background: linear-gradient(120deg, lightcoral 60%, rgb(255, 200, 200) 88%, rgb(255, 180, 180) 40%, rgba(255, 150, 150, 0.6) 48%);
+        color: darkred; /* Dark red font color */
+    }
+
+    .flip-card-back {
+        background: linear-gradient(120deg, rgb(255, 160, 160) 30%, lightcoral 88%, rgb(255, 200, 200) 40%, rgb(255, 170, 170) 78%);
+        color: darkred; /* Dark red font color */
+        transform: rotateY(180deg);
+    }
+</style>    
 </head>
 <body class="font-sans antialiased bg-gray-100">
     <!-- Navigation Bar -->
@@ -41,9 +96,9 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     </nav>
 
     <!-- Hero Section -->
-    <section class="container px-4 py-12 mx-auto mt-20">
-        <div class="grid items-center grid-cols-1 gap-8 md:grid-cols-2">
-            <div class="p-8 text-white bg-blue-900 rounded-lg">
+    <section class="container px-4 py-12 mt-6">
+        <div class="grid items-center grid-cols-1  md:grid-cols-2">
+            <div class="p-20 text-white bg-blue-900  ">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl">Donating Blood Saves Lives</h2>
                 <p class="mb-6">Blood consists of red blood cells, platelets, plasma, and white blood cells. Each donation can save up to three lives.</p>
                 <div class="flex flex-wrap gap-4">
@@ -52,59 +107,68 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
                     <a href="#signup" class="px-4 py-2 font-semibold text-blue-900 transition bg-white rounded-full hover:bg-gray-100">Join Now</a>
                 </div>
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center ">
                 <img src="homeimg.jpg" alt="Blood Donor" class="h-auto max-w-full rounded-lg shadow-lg">
             </div>
         </div>
     </section>
-
-    <!-- Flip Cards Section -->
-    <section class="container px-4 py-12 mx-auto">
-        <div class="flex flex-wrap justify-center gap-8">
-            <div class="w-full sm:w-64 h-80 perspective-1000">
-                <div class="relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d hover:rotate-y-180">
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-blue-500 shadow-lg bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl backface-hidden">
-                        <i class="mb-4 text-4xl text-blue-600 fas fa-hand-holding-heart"></i>
-                        <p class="text-2xl font-bold text-blue-600">Donate Blood</p>
-                        <p class="px-4 mt-2 text-gray-700">Be a hero by donating blood.</p>
-                    </div>
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-blue-500 shadow-lg bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl backface-hidden rotate-y-180">
-                        <p class="text-2xl font-bold text-white">Learn More</p>
-                        <p class="px-4 mt-2 text-white">Discover the impact of your donation.</p>
-                        <button class="px-4 py-2 mt-4 font-semibold text-blue-600 bg-white rounded-lg hover:bg-gray-100">Read More</button>
-                    </div>
-                </div>
+<div class="flex flex-wrap justify-center gap-8 mt-8">
+    <!-- Flip Card 1 -->
+    <div class="flip-card ">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">FLIP CARD</p>
+                <p>Hover Me</p>
             </div>
-            <div class="w-full sm:w-64 h-80 perspective-1000">
-                <div class="relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d hover:rotate-y-180">
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-green-500 shadow-lg bg-gradient-to-br from-green-100 to-green-300 rounded-xl backface-hidden">
-                        <i class="mb-4 text-4xl text-green-600 fas fa-users"></i>
-                        <p class="text-2xl font-bold text-green-600">Join a Camp</p>
-                        <p class="px-4 mt-2 text-gray-700">Participate in local camps.</p>
-                    </div>
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-green-500 shadow-lg bg-gradient-to-br from-green-400 to-green-600 rounded-xl backface-hidden rotate-y-180">
-                        <p class="text-2xl font-bold text-white">Find Camps</p>
-                        <p class="px-4 mt-2 text-white">Locate nearby donation camps.</p>
-                        <button class="px-4 py-2 mt-4 font-semibold text-green-600 bg-white rounded-lg hover:bg-gray-100">View Camps</button>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full sm:w-64 h-80 perspective-1000">
-                <div class="relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d hover:rotate-y-180">
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-red-500 shadow-lg bg-gradient-to-br from-red-100 to-red-300 rounded-xl backface-hidden">
-                        <i class="mb-4 text-4xl text-red-600 fas fa-heartbeat"></i>
-                        <p class="text-2xl font-bold text-red-600">Save Lives</p>
-                        <p class="px-4 mt-2 text-gray-700">One donation, three lives saved.</p>
-                    </div>
-                    <div class="absolute flex flex-col items-center justify-center w-full h-full border border-red-500 shadow-lg bg-gradient-to-br from-red-400 to-red-600 rounded-xl backface-hidden rotate-y-180">
-                        <p class="text-2xl font-bold text-white">Get Involved</p>
-                        <p class="px-4 mt-2 text-white">Join the life-saving mission.</p>
-                        <button class="px-4 py-2 mt-4 font-semibold text-red-600 bg-white rounded-lg hover:bg-gray-100">Join Us</button>
-                    </div>
-                </div>
+            <div class="flip-card-back">
+                <p class="title">BACK</p>
+                <p>Leave Me</p>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Flip Card 2 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">FLIP CARD</p>
+                <p>Hover Me</p>
+            </div>
+            <div class="flip-card-back">
+                <p class="title">BACK</p>
+                <p>Leave Me</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flip Card 3 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">FLIP CARD</p>
+                <p>Hover Me</p>
+            </div>
+            <div class="flip-card-back">
+                <p class="title">BACK</p>
+                <p>Leave Me</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flip Card 4 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">FLIP CARD</p>
+                <p>Hover Me</p>
+            </div>
+            <div class="flip-card-back">
+                <p class="title">BACK</p>
+                <p>Leave Me</p>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Blood Group Compatibility Section -->
     <section id="eligibility" class="container px-4 py-12 mx-auto bg-white rounded-lg shadow-md">
