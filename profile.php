@@ -44,39 +44,16 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<<<<<<< HEAD
 <body class="bg-red-400">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
-        <div class="container mx-auto p-4 flex justify-between items-center">
+    <nav class="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
+        <div class="container flex items-center justify-between p-4 mx-auto">
             <a href="index.php" class="text-2xl font-bold">Hemova</a>
             <div>
-            <a href="index.php" class="text-gray-700 hover:text-gray-900 mx-2">Home</a>
-                <a href="profile.php" class="text-gray-700 hover:text-gray-900 mx-2">Profile</a>
-                <a href="check_blood_availability.php" class="text-gray-700 hover:text-gray-900 mx-2">Check Blood Availability</a>
-                <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
-=======
-<body class="min-h-screen font-sans antialiased bg-gray-50">
-    <?php renderNavbar($isLoggedIn, $isHospitalLoggedIn); ?>
-    <nav class="fixed top-0 z-10 w-full bg-white shadow-md">
-        <div class="container flex items-center justify-between p-4 mx-auto">
-            <a href="index.php" class="text-2xl font-bold text-red-600">Hemova</a>
-            <div class="space-x-4">
-                <?php if ($isLoggedIn): ?>
-                    <a href="profile.php" class="text-gray-700 transition duration-300 hover:text-red-600">Profile</a>
-                    <a href="check_blood_availability.php" class="text-gray-700 transition duration-300 hover:text-red-600">Check Blood Availability</a>
-                    <a href="viewCamps.php" class="text-gray-700 transition duration-300 hover:text-red-600">View Camps</a>
-                    <a href="logout.php" class="px-4 py-2 text-white transition duration-300 bg-red-600 rounded hover:bg-red-700">Logout</a>
-                <?php elseif ($isHospitalLoggedIn): ?>
-                    <a href="managecamps.php" class="text-gray-700 transition duration-300 hover:text-red-600">Manage Camps</a>
-                    <a href="logout.php" class="px-4 py-2 text-white transition duration-300 bg-red-600 rounded hover:bg-red-700">Logout</a>
-                <?php else: ?>
-                    <a href="signin.php" class="text-gray-700 transition duration-300 hover:text-red-600">Sign In</a>
-                    <a href="signup.php" class="text-gray-700 transition duration-300 hover:text-red-600">Sign Up</a>
-                    <a href="hospitalLogin.html" class="text-gray-700 transition duration-300 hover:text-red-600">Hospital Login</a>
-                    <a href="hospitalRegister.html" class="text-gray-700 transition duration-300 hover:text-red-600">Hospital Registration</a>
-                <?php endif; ?>
->>>>>>> 0d00b6714cae60ea81c1630edbba1a932a529b5d
+            <a href="index.php" class="mx-2 text-gray-700 hover:text-gray-900">Home</a>
+                <a href="profile.php" class="mx-2 text-gray-700 hover:text-gray-900">Profile</a>
+                <a href="check_blood_availability.php" class="mx-2 text-gray-700 hover:text-gray-900">Check Blood Availability</a>
+                <a href="logout.php" class="px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Logout</a>
             </div>
         </div>
     </nav>
