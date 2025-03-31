@@ -28,7 +28,7 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
         font-weight: 900;
         text-align: center;
         margin: 0;
-        color: darkred; /* Dark red font color */
+        color: white; /* Changed title color to white */
     }
 
     .flip-card-inner {
@@ -56,16 +56,15 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
         backface-visibility: hidden;
         border: 1px solid coral;
         border-radius: 1rem;
+        color: white; /* Changed text color to white */
     }
 
     .flip-card-front {
-        background: linear-gradient(120deg, lightcoral 60%, rgb(255, 200, 200) 88%, rgb(255, 180, 180) 40%, rgba(255, 150, 150, 0.6) 48%);
-        color: darkred; /* Dark red font color */
+        background: linear-gradient(120deg, #dc2626 60%, #ef4444 88%, #f87171 40%, #fca5a5 48%);
     }
 
     .flip-card-back {
-        background: linear-gradient(120deg, rgb(255, 160, 160) 30%, lightcoral 88%, rgb(255, 200, 200) 40%, rgb(255, 170, 170) 78%);
-        color: darkred; /* Dark red font color */
+        background: linear-gradient(120deg, #dc2626 30%, #ef4444 88%, #f87171 40%, #fca5a5 78%);
         transform: rotateY(180deg);
     }
 </style>    
@@ -97,8 +96,8 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
 
     <!-- Hero Section -->
     <section class="container px-4 py-12 mt-6">
-        <div class="grid items-center grid-cols-1  md:grid-cols-2">
-            <div class="p-20 text-white bg-blue-900  ">
+        <div class="grid items-center grid-cols-1 md:grid-cols-2">
+            <div class="p-20 text-white bg-blue-900 ">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl">Donating Blood Saves Lives</h2>
                 <p class="mb-6">Blood consists of red blood cells, platelets, plasma, and white blood cells. Each donation can save up to three lives.</p>
                 <div class="flex flex-wrap gap-4">
@@ -114,15 +113,23 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     </section>
 <div class="flex flex-wrap justify-center gap-8 mt-8">
     <!-- Flip Card 1 -->
-    <div class="flip-card ">
+    <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <p class="title">FLIP CARD</p>
-                <p>Hover Me</p>
+                <p class="title">Why Donate Blood?</p>
+                <i class="mb-4 text-5xl fas fa-heart"></i>
+                <p>One donation can save up to three lives</p>
+                <p class="mt-4 text-sm">(Hover to learn more)</p>
             </div>
             <div class="flip-card-back">
-                <p class="title">BACK</p>
-                <p>Leave Me</p>
+                <p class="title">Benefits</p>
+                <ul class="px-4 mt-4 text-left">
+                    <li>• Free health screening</li>
+                    <li>• Burns calories</li>
+                    <li>• Reduces risk of heart disease</li>
+                    <li>• Helps others in emergency</li>
+                    <li>• Regular health updates</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -131,12 +138,19 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <p class="title">FLIP CARD</p>
-                <p>Hover Me</p>
+                <p class="title">Donation Process</p>
+                <i class="mb-4 text-5xl fas fa-procedures"></i>
+                <p>Simple 4-step process</p>
+                <p class="mt-4 text-sm">(Hover to learn more)</p>
             </div>
             <div class="flip-card-back">
-                <p class="title">BACK</p>
-                <p>Leave Me</p>
+                <p class="title">Steps</p>
+                <ul class="px-4 mt-4 text-left">
+                    <li>1. Registration</li>
+                    <li>2. Medical screening</li>
+                    <li>3. Blood donation (15 min)</li>
+                    <li>4. Refreshments & rest</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -145,12 +159,20 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <p class="title">FLIP CARD</p>
-                <p>Hover Me</p>
+                <p class="title">Blood Types Needed</p>
+                <i class="mb-4 text-5xl fas fa-tint"></i>
+                <p>All blood types welcome</p>
+                <p class="mt-4 text-sm">(Hover to learn more)</p>
             </div>
             <div class="flip-card-back">
-                <p class="title">BACK</p>
-                <p>Leave Me</p>
+                <p class="title">Most Needed Types</p>
+                <ul class="px-4 mt-4 text-left">
+                    <li>• O Negative (Universal)</li>
+                    <li>• O Positive</li>
+                    <li>• A Negative</li>
+                    <li>• B Negative</li>
+                    <li>• Platelets from all types</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -159,12 +181,20 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <p class="title">FLIP CARD</p>
-                <p>Hover Me</p>
+                <p class="title">Next Steps</p>
+                <i class="mb-4 text-5xl fas fa-clipboard-check"></i>
+                <p>Ready to donate?</p>
+                <p class="mt-4 text-sm">(Hover to learn more)</p>
             </div>
             <div class="flip-card-back">
-                <p class="title">BACK</p>
-                <p>Leave Me</p>
+                <p class="title">Get Started</p>
+                <ul class="px-4 mt-4 text-left">
+                    <li>• Sign up online</li>
+                    <li>• Find nearest center</li>
+                    <li>• Schedule appointment</li>
+                    <li>• Complete pre-screening</li>
+                    <li>• Bring valid ID</li>
+                </ul>
             </div>
         </div>
     </div>
