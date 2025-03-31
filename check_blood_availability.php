@@ -29,6 +29,7 @@ if (!empty($selected_blood_group)) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -44,6 +45,7 @@ if (!empty($selected_blood_group)) {
             overflow-x: hidden;
         }
 
+        /* Background Effects */
         .gradient-background {
             position: fixed;
             top: 0;
@@ -78,6 +80,7 @@ if (!empty($selected_blood_group)) {
             animation: float-2 18s ease-in-out infinite alternate;
         }
 
+        /* Glass Effect */
         .glass-effect {
             background: rgba(255, 255, 255, 0.1) !important;
             backdrop-filter: blur(20px);
@@ -86,6 +89,55 @@ if (!empty($selected_blood_group)) {
             transition: all 0.3s ease-in-out;
         }
 
+        /* Table Styles */
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .custom-table th {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .custom-table td {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.2s ease;
+        }
+
+        .custom-table tr:hover td {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Search Form Styles */
+        select {
+            appearance: none;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        select option {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 0.5rem;
+        }
+
+        /* Animations */
         @keyframes float-1 {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(10%, 10%) scale(1.1); }
@@ -96,6 +148,30 @@ if (!empty($selected_blood_group)) {
             100% { transform: translate(-10%, -5%) scale(1.15); }
         }
 
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Table Row Animations */
+        .custom-table tbody tr {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .custom-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .custom-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .custom-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .custom-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        .custom-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Grid Overlay */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -107,59 +183,21 @@ if (!empty($selected_blood_group)) {
                 linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             z-index: 2;
+            pointer-events: none;
         }
 
-        /* Table Styles */
-        .custom-table {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .custom-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
 
-        .custom-table th {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            select {
+                width: 100%;
+            }
         }
-
-        .custom-table td {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .custom-table tr:hover td {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Select dropdown styling */
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-        }
-
-        select option {
-            background-color: #1a1a1a;
-            color: white;
-        }
-
-        /* Animation for results */
-        tr {
-            animation: fadeIn 0.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        tr:nth-child(1) { animation-delay: 0.1s; }
-        tr:nth-child(2) { animation-delay: 0.2s; }
-        tr:nth-child(3) { animation-delay: 0.3s; }
-        tr:nth-child(4) { animation-delay: 0.4s; }
-        tr:nth-child(5) { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
