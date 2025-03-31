@@ -3,50 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Registration</title>
-    <link rel="stylesheet" href="./src/output.css">
+    <title>Hospital Registration - Hemova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: #050505;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .gradient-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .sphere-1 {
+            width: 40vw;
+            height: 40vw;
+            background: linear-gradient(40deg, rgba(255, 0, 128, 0.8), rgba(255, 102, 0, 0.4));
+            top: -10%;
+            left: -10%;
+            animation: float-1 15s ease-in-out infinite alternate;
+        }
+
+        .sphere-2 {
+            width: 45vw;
+            height: 45vw;
+            background: linear-gradient(240deg, rgba(72, 0, 255, 0.8), rgba(0, 183, 255, 0.4));
+            bottom: -20%;
+            right: -10%;
+            animation: float-2 18s ease-in-out infinite alternate;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            margin: 2rem auto;
+        }
+
+        input, textarea {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-10%, -5%) scale(1.15); }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: 2;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <div class="text-center mb-6">
-            <h1 class="text-2xl font-bold text-red-600">Hospital Registration</h1>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="gradient-background">
+        <div class="gradient-sphere sphere-1"></div>
+        <div class="gradient-sphere sphere-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <div class="mb-8 text-center">
+            <h2 class="text-3xl font-bold text-white">Hospital Registration</h2>
+            <p class="text-white/80">Join Hemova's network of healthcare providers</p>
         </div>
-        <div class="bg-red-100 p-6 rounded-lg">
-            <form action="hospitalRegister.php" method="POST">
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700" for="name">Hospital Name</label>
-                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="text" name="name" id="name" placeholder="Enter Hospital name" required>
+
+        <div class="p-8 shadow-2xl glass-effect rounded-2xl">
+            <form action="hospitalRegister.php" method="POST" class="space-y-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-white" for="name">
+                        <i class="mr-2 fas fa-hospital"></i>Hospital Name
+                    </label>
+                    <input type="text" name="name" id="name" required
+                        class="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                        placeholder="Enter Hospital name">
                 </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700" for="email">Email</label>
-                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="email" name="email" id="email" placeholder="Enter email" required>
+
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-white" for="email">
+                        <i class="mr-2 fas fa-envelope"></i>Email
+                    </label>
+                    <input type="email" name="email" id="email" required
+                        class="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                        placeholder="Enter email">
                 </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700" for="password">Password</label>
-                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="password" name="password" id="password" placeholder="Enter password" required>
+
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-white" for="password">
+                        <i class="mr-2 fas fa-lock"></i>Password
+                    </label>
+                    <input type="password" name="password" id="password" required
+                        class="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                        placeholder="Enter password">
                 </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700" for="phone">Phone Number</label>
-                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="tel" name="phone" id="phone" placeholder="Enter phone number" required>
+
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-white" for="phone">
+                        <i class="mr-2 fas fa-phone"></i>Phone Number
+                    </label>
+                    <input type="tel" name="phone" id="phone" required
+                        class="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                        placeholder="Enter phone number">
                 </div>
-                
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700" for="address">Address</label>
-                    <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                           type="text" name="address" id="address" placeholder="Enter address" required>
+
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-white" for="address">
+                        <i class="mr-2 fas fa-location-dot"></i>Address
+                    </label>
+                    <textarea name="address" id="address" required
+                        class="w-full h-24 px-4 py-3 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                        placeholder="Enter address"></textarea>
                 </div>
-                
-                <input class="w-full bg-red-600 text-white p-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer" 
-                       type="submit" value="Register">
+
+                <button type="submit" 
+                    class="w-full py-3 mt-6 font-medium text-white transition duration-200 transform bg-gradient-to-r from-red-600 to-pink-600 rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    Register Hospital
+                </button>
+
+                <div class="mt-6 text-center text-white">
+                    <p class="text-white/80">Already registered?</p>
+                    <a href="hospitalLogin.php" class="font-medium transition duration-200 hover:text-red-200">Login Here</a>
+                </div>
             </form>
         </div>
     </div>
+
+    <a href="index.php" class="fixed z-50 p-3 transition duration-200 rounded-full top-6 left-6 bg-white/10 hover:bg-white/20 backdrop-blur-sm">
+        <i class="text-white fas fa-arrow-left"></i>
+    </a>
 </body>
 </html>
