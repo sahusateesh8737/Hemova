@@ -252,12 +252,38 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 6rem 10% 2rem 10%;
     position: relative;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     margin: 0;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    right: 0;
+    left: 100;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 30%;
+    height: 50%;
+    opacity: 0;
+    animation: fadeInSlide 1s ease-out forwards;
+    animation-delay: 0.5s;
+    z-index: 5;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translate(100px, -50%);
+    }
+    to {
+        opacity: 0.8;
+        transform: translate(0, -50%);
+    }
 }
 
 .hero-content {
@@ -345,6 +371,79 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
 .reveal.active tbody tr:nth-child(6) { transition-delay: 0.6s; }
 .reveal.active tbody tr:nth-child(7) { transition-delay: 0.7s; }
 .reveal.active tbody tr:nth-child(8) { transition-delay: 0.8s; }
+
+/* Add this to your existing styles section */
+.slide-from-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-from-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Eligibility Section Styles */
+.eligibility-card {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.eligibility-card h3 {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.eligibility-card ul li {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.eligibility-card.can-donate {
+    border-left: 4px solid rgba(34, 197, 94, 0.5);
+}
+
+.eligibility-card.cannot-donate {
+    border-left: 4px solid rgba(239, 68, 68, 0.5);
+}
+
+/* Blood Donation Facts Section Styles */
+.facts-card {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facts-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.facts-card i {
+    color: rgba(239, 68, 68, 0.9) !important;
+}
+
+.facts-card p {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.facts-card .text-gray-600 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.facts-section {
+    background: transparent !important;
+}
     </style>    
 </head>
 <body>
@@ -374,17 +473,19 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     </nav>
 
 
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Give Blood, <span>Save Lives</span></h2>
-            <p>Join Hemova's network of life-savers. Every donation can help up to 3 people in need. Your simple act of kindness can make a world of difference to someone in crisis.</p>
-            <div class="flex gap-4 hero-buttons">
-                <a href="#donate" class="px-6 py-3 text-white transition-all duration-300 rounded-full bg-gradient-to-r from-red-600 to-red-700 hover:shadow-lg hover:-translate-y-1">Donate Now</a>
-                <a href="#learn" class="px-6 py-3 text-white transition-all duration-300 border-2 border-white rounded-full hover:bg-white hover:text-red-600">Learn More</a>
-            </div>
+<!-- hero section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h2>Give Blood, <span>Save Lives</span></h2>
+        <p>Join Hemova's network of life-savers. Every donation can help up to 3 people in need. Your simple act of kindness can make a world of difference to someone in crisis.</p>
+        <div class="flex gap-4 hero-buttons">
+            <a href="#donate" class="px-6 py-3 text-white transition-all duration-300 rounded-full bg-gradient-to-r from-red-600 to-red-700 hover:shadow-lg hover:-translate-y-1">Donate Now</a>
+            <a href="#learn" class="px-6 py-3 text-white transition-all duration-300 border-2 border-white rounded-full hover:bg-white hover:text-red-600">Learn More</a>
         </div>
-    </section>
+    </div>
+    <img src="blood1.png" alt="Blood Donation" class="hero-image">
+</section>
+    <!-- hero section close -->
 <div class="flex flex-wrap justify-center gap-8 mt-8">
     <!-- Flip Card 1 -->
     <div class="flip-card">
@@ -534,11 +635,11 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
 
     <!-- Eligibility Criteria Section -->
     <section class="container px-4 py-12 mx-auto">
-        <h2 class="mb-8 text-3xl font-bold text-center text-gray-800">Who Can Donate?</h2>
+        <h2 class="mb-8 text-3xl font-bold text-center text-white">Who Can Donate?</h2>
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div class="p-6 rounded-lg shadow-md bg-green-50">
-                <h3 class="mb-4 text-xl font-semibold text-green-600">Eligible Donors</h3>
-                <ul class="pl-5 space-y-2 text-gray-700 list-disc">
+            <div class="p-6 rounded-lg eligibility-card can-donate slide-from-left">
+                <h3 class="mb-4 text-xl font-semibold">Eligible Donors</h3>
+                <ul class="pl-5 space-y-2 list-disc">
                     <li>Age: 17-65 (16 with parental consent in some regions)</li>
                     <li>Weight: At least 110 lbs (50 kg)</li>
                     <li>Good general health</li>
@@ -546,9 +647,9 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
                     <li>No cold, flu, or fever on donation day</li>
                 </ul>
             </div>
-            <div class="p-6 rounded-lg shadow-md bg-red-50">
-                <h3 class="mb-4 text-xl font-semibold text-red-600">Cannot Donate</h3>
-                <ul class="pl-5 space-y-2 text-gray-700 list-disc">
+            <div class="p-6 rounded-lg eligibility-card cannot-donate slide-from-right">
+                <h3 class="mb-4 text-xl font-semibold">Cannot Donate</h3>
+                <ul class="pl-5 space-y-2 list-disc">
                     <li>Pregnant or breastfeeding women</li>
                     <li>Recent surgery or blood transfusion (within 6 months)</li>
                     <li>Chronic illnesses (e.g., diabetes, heart disease)</li>
@@ -560,21 +661,21 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     </section>
 
     <!-- Donation Facts Section -->
-    <section class="container px-4 py-12 mx-auto bg-gray-200">
-        <h2 class="mb-8 text-3xl font-bold text-center text-gray-800">Blood Donation Facts</h2>
+    <section class="container px-4 py-12 mx-auto facts-section">
+        <h2 class="mb-8 text-3xl font-bold text-center text-white">Blood Donation Facts</h2>
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div class="p-6 text-center bg-white rounded-lg shadow-md">
-                <i class="mb-4 text-3xl text-red-600 fas fa-tint"></i>
+            <div class="p-6 text-center facts-card rounded-xl">
+                <i class="mb-4 text-3xl fas fa-tint"></i>
                 <p class="text-lg font-semibold">1 Donation = 3 Lives</p>
                 <p class="text-gray-600">Each donation can help multiple patients.</p>
             </div>
-            <div class="p-6 text-center bg-white rounded-lg shadow-md">
-                <i class="mb-4 text-3xl text-red-600 fas fa-clock"></i>
-                <p class="text-lg font-semibold">EveryCUL8 Every 8 Weeks</p>
+            <div class="p-6 text-center facts-card rounded-xl">
+                <i class="mb-4 text-3xl fas fa-clock"></i>
+                <p class="text-lg font-semibold">Every 8 Weeks</p>
                 <p class="text-gray-600">You can donate every 56 days, up to 6 times a year.</p>
             </div>
-            <div class="p-6 text-center bg-white rounded-lg shadow-md">
-                <i class="mb-4 text-3xl text-red-600 fas fa-users"></i>
+            <div class="p-6 text-center facts-card rounded-xl">
+                <i class="mb-4 text-3xl fas fa-users"></i>
                 <p class="text-lg font-semibold">High Demand</p>
                 <p class="text-gray-600">Someone needs blood every 2 seconds.</p>
             </div>
@@ -683,6 +784,32 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
         window.addEventListener('scroll', animateFlipCards);
         // Trigger on initial load
         animateFlipCards();
+
+        // Add this to your existing scripts
+        function animateEligibilitySections() {
+            const leftElements = document.querySelectorAll('.slide-from-left');
+            const rightElements = document.querySelectorAll('.slide-from-right');
+            
+            const animate = (elements) => {
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100 && elementBottom > 0) {
+                        element.classList.add('slide-in');
+                    }
+                });
+            };
+
+            animate(leftElements);
+            animate(rightElements);
+        }
+
+        // Add scroll event listener for eligibility sections
+        window.addEventListener('scroll', animateEligibilitySections);
+        // Trigger on initial load
+        animateEligibilitySections();
     </script>
 </body>
 </html>
