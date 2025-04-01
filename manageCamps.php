@@ -76,103 +76,191 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Camps - Hemova</title>
-    <link rel="stylesheet" href="./src/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: #050505;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .gradient-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .sphere-1 {
+            width: 40vw;
+            height: 40vw;
+            background: linear-gradient(40deg, rgba(255, 0, 128, 0.8), rgba(255, 102, 0, 0.4));
+            top: -10%;
+            left: -10%;
+            animation: float-1 15s ease-in-out infinite alternate;
+        }
+
+        .sphere-2 {
+            width: 45vw;
+            height: 45vw;
+            background: linear-gradient(240deg, rgba(72, 0, 255, 0.8), rgba(0, 183, 255, 0.4));
+            bottom: -20%;
+            right: -10%;
+            animation: float-2 18s ease-in-out infinite alternate;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-input:focus {
+            border-color: rgba(239, 68, 68, 0.5);
+            ring-color: rgba(239, 68, 68, 0.5);
+        }
+
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-10%, -5%) scale(1.15); }
+        }
+    </style>
 </head>
-<body class="font-sans bg-gray-100">
+<body>
+    <div class="gradient-background">
+        <div class="gradient-sphere sphere-1"></div>
+        <div class="gradient-sphere sphere-2"></div>
+    </div>
+
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 z-10 w-full bg-white shadow-md">
+    <nav class="fixed top-0 left-0 z-50 w-full bg-transparent border-b backdrop-blur-sm border-white/10">
         <div class="container flex items-center justify-between p-4 mx-auto">
-            <a href="index.php" class="text-2xl font-bold text-red-600">Hemova</a>
-            <div class="space-x-4">
-                <a href="manageCamps.php" class="text-gray-700 transition duration-300 hover:text-red-600">Manage Camps</a>
-                <a href="logout.php" class="px-4 py-2 text-white transition duration-300 bg-red-600 rounded hover:bg-red-700">Logout</a>
+            <a href="index.php" class="text-2xl font-bold text-white transition-colors hover:text-red-500">Hemova</a>
+            <div class="flex items-center space-x-4">
+                <a href="manageCamps.php" class="transition text-white/90 hover:text-red-500">Manage Camps</a>
+                <a href="view_registrations.php" class="transition text-white/90 hover:text-red-500">View Registrations</a>
+                <a href="logout.php" class="px-4 py-2 text-white transition rounded bg-red-600/80 hover:bg-red-700">Logout</a>
             </div>
         </div>
     </nav>
 
-    <div class="container p-4 pt-20 mx-auto">
-        <h1 class="mb-6 text-3xl font-bold text-center text-gray-800">Manage Blood Donation Camps</h1>
+    <div class="container relative z-10 px-4 py-20 mx-auto">
+        <h1 class="mb-8 text-3xl font-bold text-center text-white">Manage Blood Donation Camps</h1>
 
         <!-- Add New Camp Section -->
-        <div class="p-6 mb-8 bg-white rounded-lg shadow-md">
-            <h2 class="mb-4 text-2xl font-bold text-red-600">Add New Camp</h2>
+        <div class="p-6 mb-8 glass-effect rounded-xl">
+            <h2 class="mb-6 text-2xl font-bold text-white/90">Add New Camp</h2>
             <?php if ($addMessage): ?>
                 <div class="mb-4"><?php echo $addMessage; ?></div>
             <?php endif; ?>
             <form action="manageCamps.php" method="POST">
-                <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+                <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700" for="name">Camp Name</label>
-                        <input class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                               type="text" name="name" id="name" placeholder="Enter camp name" required>
+                        <label class="block mb-2 text-sm font-medium text-white/80">Camp Name</label>
+                        <input class="w-full px-4 py-2 rounded-lg form-input" 
+                               type="text" name="name" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700" for="location">Location</label>
-                        <input class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                               type="text" name="location" id="location" placeholder="Enter location" required>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700" for="date">Date</label>
-                        <input class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                               type="date" name="date" id="date">
+                        <label class="block mb-2 text-sm font-medium text-white/80">Location</label>
+                        <input class="w-full px-4 py-2 rounded-lg form-input" 
+                               type="text" name="location" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700" for="time">Time</label>
-                        <input class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                               type="time" name="time" id="time">
+                        <label class="block mb-2 text-sm font-medium text-white/80">Date</label>
+                        <input class="w-full px-4 py-2 rounded-lg form-input" 
+                               type="date" name="date" required>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-white/80">Time</label>
+                        <input class="w-full px-4 py-2 rounded-lg form-input" 
+                               type="time" name="time" required>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700" for="description">Description</label>
-                    <textarea class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" 
-                              name="description" id="description" rows="3" placeholder="Enter description" required></textarea>
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-white/80">Description</label>
+                    <textarea class="w-full px-4 py-2 rounded-lg form-input" 
+                              name="description" rows="3" required></textarea>
                 </div>
-                <input class="w-full p-2 text-white transition duration-300 bg-red-600 rounded-md cursor-pointer hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" 
-                       type="submit" name="add_camp" value="Add Camp">
+                <button type="submit" name="add_camp" 
+                    class="w-full py-2 text-white transition duration-200 transform rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:shadow-lg hover:-translate-y-0.5">
+                    Add Camp
+                </button>
             </form>
         </div>
 
         <!-- Existing Camps Section -->
-        <div class="p-6 bg-white rounded-lg shadow-md">
-            <h2 class="mb-4 text-2xl font-bold text-red-600">Existing Camps</h2>
+        <div class="p-6 glass-effect rounded-xl">
+            <h2 class="mb-6 text-2xl font-bold text-white/90">Existing Camps</h2>
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white">
+                <table class="w-full">
                     <thead>
-                        <tr>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Camp Name</th>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Location</th>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Date</th>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Time</th>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Description</th>
-                            <th class="px-4 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b border-gray-200">Actions</th>
+                        <tr class="text-left border-b border-white/10">
+                            <th class="p-3 text-sm font-medium text-white/80">Camp Name</th>
+                            <th class="p-3 text-sm font-medium text-white/80">Location</th>
+                            <th class="p-3 text-sm font-medium text-white/80">Date</th>
+                            <th class="p-3 text-sm font-medium text-white/80">Time</th>
+                            <th class="p-3 text-sm font-medium text-white/80">Description</th>
+                            <th class="p-3 text-sm font-medium text-white/80">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>" . htmlspecialchars($row['name']) . "</td>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>" . htmlspecialchars($row['location']) . "</td>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>" . htmlspecialchars($row['date']) . "</td>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>" . htmlspecialchars($row['time']) . "</td>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>" . htmlspecialchars($row['description']) . "</td>";
-                                echo "<td class='px-4 py-3 border-b border-gray-200'>";
-                                echo "<form action='manageCamps.php' method='POST' class='inline'>";
-                                echo "<input type='hidden' name='camp_id' value='" . $row['id'] . "'>";
-                                echo "<input type='submit' name='delete_camp' value='Delete' class='px-4 py-2 text-white transition duration-300 bg-red-600 rounded cursor-pointer hover:bg-red-700'>";
-                                echo "</form>";
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='6' class='px-4 py-3 text-center text-gray-600 border-b border-gray-200'>No camps available</td></tr>";
-                        }
-                        $stmt->close();
-                        $connection->close();
-                        ?>
+                        <?php if ($result->num_rows > 0): while ($row = $result->fetch_assoc()): ?>
+                            <tr class="border-b border-white/10">
+                                <td class="p-3 text-white/70"><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td class="p-3 text-white/70"><?php echo htmlspecialchars($row['location']); ?></td>
+                                <td class="p-3 text-white/70"><?php echo htmlspecialchars($row['date']); ?></td>
+                                <td class="p-3 text-white/70"><?php echo htmlspecialchars($row['time']); ?></td>
+                                <td class="p-3 text-white/70"><?php echo htmlspecialchars($row['description']); ?></td>
+                                <td class="p-3">
+                                    <form action="manageCamps.php" method="POST" class="inline">
+                                        <input type="hidden" name="camp_id" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" name="delete_camp" 
+                                            class="px-4 py-1 text-sm text-white transition rounded-full bg-red-500/20 hover:bg-red-500/30">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endwhile; else: ?>
+                            <tr>
+                                <td colspan="6" class="p-3 text-center text-white/50">No camps available</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

@@ -575,6 +575,77 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     </div>
 </div>
 
+<!-- Post-Donation Care Section -->
+<section class="relative z-10 py-20">
+    <div class="container px-4 mx-auto">
+        <h2 class="mb-12 text-4xl font-bold text-center text-white">Post-Donation Care</h2>
+        
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <!-- Refreshments Card -->
+            <div class="p-6 transition-transform duration-300 glass-effect rounded-xl hover:-translate-y-2">
+                <div class="mb-4 text-3xl text-red-500">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <h3 class="mb-3 text-xl font-semibold text-white">Refreshments</h3>
+                <p class="text-white/70">
+                    Enjoy complimentary drinks and snacks after your donation to help replenish your energy.
+                </p>
+            </div>
+
+            <!-- Rest Card -->
+            <div class="p-6 transition-transform duration-300 glass-effect rounded-xl hover:-translate-y-2">
+                <div class="mb-4 text-3xl text-red-500">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <h3 class="mb-3 text-xl font-semibold text-white">Rest Area</h3>
+                <p class="text-white/70">
+                    Take a moment to rest in our comfortable recovery area under medical supervision.
+                </p>
+            </div>
+
+            <!-- Care Kit Card -->
+            <div class="p-6 transition-transform duration-300 glass-effect rounded-xl hover:-translate-y-2">
+                <div class="mb-4 text-3xl text-red-500">
+                    <i class="fas fa-first-aid"></i>
+                </div>
+                <h3 class="mb-3 text-xl font-semibold text-white">Care Package</h3>
+                <p class="text-white/70">
+                    Receive a care package with essential items and post-donation care instructions.
+                </p>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="p-6 mt-8 text-center glass-effect rounded-xl">
+            <h3 class="mb-4 text-2xl font-semibold text-white">What We Provide</h3>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div class="p-3">
+                    <i class="mb-2 text-2xl text-red-500 fas fa-cookie-bite"></i>
+                    <p class="text-white/70">Light Snacks</p>
+                </div>
+                <div class="p-3">
+                    <i class="mb-2 text-2xl text-red-500 fas fa-glass-water"></i>
+                    <p class="text-white/70">Fresh Juices</p>
+                </div>
+                <div class="p-3">
+                    <i class="mb-2 text-2xl text-red-500 fas fa-mug-hot"></i>
+                    <p class="text-white/70">Hot Beverages</p>
+                </div>
+                <div class="p-3">
+                    <i class="mb-2 text-2xl text-red-500 fas fa-apple-whole"></i>
+                    <p class="text-white/70">Fresh Fruits</p>
+                </div>
+            </div>
+            <p class="mt-6 text-white/60">
+                We recommend staying in our recovery area for at least 15 minutes after donation. 
+                Our staff will ensure you're feeling well before you leave.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
     <!-- Blood Group Compatibility Section -->
     <section id="eligibility" class="container px-4 py-12 mx-auto bg-transparent rounded-lg shadow-md reveal">
         <h2 class="mb-8 text-3xl font-bold text-center text-white">Blood Group Compatibility</h2>
