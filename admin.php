@@ -250,9 +250,12 @@ $all_users = mysqli_query($connection, "SELECT id, name, email, blood_group, pho
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-xl font-semibold">All Users</h3>
                 <div class="flex gap-4">
-                    <input type="text" id="userSearch" 
+                    <input type="text" 
+                        id="userSearch" 
                         class="px-4 py-2 text-white transition duration-200 border rounded-lg bg-white/10 border-white/20 focus:ring-2 focus:ring-red-400 focus:border-transparent"
-                        placeholder="Search users...">
+                        placeholder="Search by name, email, blood group..."
+                        autocomplete="off"
+                    >
                 </div>
             </div>
             <div class="overflow-x-auto">
