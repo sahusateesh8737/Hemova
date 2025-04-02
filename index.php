@@ -275,6 +275,30 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
     z-index: 5;
 }
 
+/* Add this media query for mobile devices */
+@media (max-width: 768px) {
+    .hero-image {
+        display: none; /* Hide image on mobile */
+    }
+
+    .hero {
+        padding: 6rem 5% 2rem 5%; /* Adjust padding for mobile */
+    }
+
+    .hero-content {
+        max-width: 100%; /* Full width on mobile */
+        text-align: center; /* Center text on mobile */
+    }
+
+    .hero h2 {
+        font-size: 2.5rem; /* Smaller heading on mobile */
+    }
+
+    .hero p {
+        font-size: 1.1rem; /* Adjusted paragraph size for mobile */
+    }
+}
+
 @keyframes fadeInSlide {
     from {
         opacity: 0;
