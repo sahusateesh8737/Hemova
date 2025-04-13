@@ -1,10 +1,12 @@
 <?php
+// At the top of your index.php, update the session check:
 session_start();
 include 'dbconnection.php';
 
-// Check if user is logged in
+// Check if user or hospital is logged in
 $isLoggedIn = isset($_SESSION['currUserID']);
 $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
+$hospitalName = $isHospitalLoggedIn ? $_SESSION['hospital_name'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -485,6 +487,7 @@ $isHospitalLoggedIn = isset($_SESSION['hospital_id']);
                     <a href="logout.php" class="px-4 py-2 text-white transition rounded bg-red-600/80 hover:bg-red-700">Logout</a>
                 <?php elseif ($isHospitalLoggedIn): ?>
                     <a href="managecamps.php" class="transition text-white/90 hover:text-red-500">Manage Camps</a>
+                    <a href="view_registrations.php" class="transition text-white/90 hover:text-red-500">View Registrations</a>
                     <a href="logout.php" class="px-4 py-2 text-white transition rounded bg-red-600/80 hover:bg-red-700">Logout</a>
                 <?php else: ?>
                     <a href="signin.php" class="transition text-white/90 hover:text-red-500">Sign In</a>

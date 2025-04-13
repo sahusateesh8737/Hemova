@@ -3,13 +3,30 @@ session_start();
 include 'dbconnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
+
+    // Debug database connection
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Debug input values
+    error_log("Email: " . $email);
 
     $sql = "SELECT id, name, password FROM hospitals WHERE email = ?";
     $stmt = $connection->prepare($sql);
+    
+    if (!$stmt) {
+        die("Prepare failed: " . $connection->error);
+    }
+
     $stmt->bind_param("s", $email);
-    $stmt->execute();
+    
+    if (!$stmt->execute()) {
+        die("Execute failed: " . $stmt->error);
+    }
+
     $result = $stmt->get_result();
     
     if ($result->num_rows == 1) {
@@ -17,14 +34,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['password'])) {
             $_SESSION['hospital_id'] = $row['id'];
             $_SESSION['hospital_name'] = $row['name'];
-            header("Location: index.php");
+            header("Location: manageCamps.php"); // Changed to redirect to manageCamps.php
             exit();
         } else {
             $error_message = "Invalid password!";
+            error_log("Password verification failed for email: " . $email);
         }
     } else {
         $error_message = "No hospital found with this email!";
+        
+        // Debug query
+        $debug_sql = "SELECT COUNT(*) as count FROM hospitals";
+        $debug_result = $connection->query($debug_sql);
+        $debug_row = $debug_result->fetch_assoc();
+        error_log("Total hospitals in database: " . $debug_row['count']);
     }
+    
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>

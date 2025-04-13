@@ -102,7 +102,7 @@ try {
             <a href="index.php" class="text-2xl font-bold text-white transition-colors hover:text-red-500">Hemova</a>
             <div class="flex items-center space-x-4">
                 <a href="manageCamps.php" class="transition text-white/90 hover:text-red-500">Manage Camps</a>
-                <a href="view_registrations.php" class="text-red-500 transition">View Registrations</a>
+                <!-- <a href="view_registrations.php" class="text-red-500 transition">View Registrations</a> -->
                 <a href="logout.php" class="px-4 py-2 text-white transition rounded bg-red-600/80 hover:bg-red-700">Logout</a>
             </div>
         </div>
