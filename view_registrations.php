@@ -88,12 +88,42 @@ try {
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
+        
+        .status-badge {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .status-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
     <div class="gradient-background">
         <div class="gradient-sphere sphere-1"></div>
         <div class="gradient-sphere sphere-2"></div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast glass-effect">
+        <span id="toast-message">Status updated successfully</span>
     </div>
 
     <!-- Navigation Bar -->
@@ -141,8 +171,13 @@ try {
                             </td>
                             <td class="p-3 text-white/70"><?php echo date('d M Y', strtotime($reg['registration_date'])); ?></td>
                             <td class="p-3 text-white/70">
-                                <span class="px-2 py-1 text-sm rounded-full <?php echo $reg['status'] === 'confirmed' ? 'bg-green-500/20' : 'bg-yellow-500/20'; ?>">
+                                <span 
+                                    data-registration-id="<?php echo $reg['registration_id']; ?>"
+                                    class="status-badge px-2 py-1 text-sm rounded-full <?php echo $reg['status'] === 'confirmed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400 hover:bg-green-500/20 hover:text-green-400'; ?>">
                                     <?php echo ucfirst($reg['status']); ?>
+                                    <?php if($reg['status'] !== 'confirmed'): ?>
+                                        <i class="ml-1 fas fa-arrow-right"></i>
+                                    <?php endif; ?>
                                 </span>
                             </td>
                         </tr>
@@ -157,6 +192,88 @@ try {
         </div>
         <?php endif; ?>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event listeners to all status badges that are not already confirmed
+            const statusBadges = document.querySelectorAll('.status-badge');
+            
+            statusBadges.forEach(badge => {
+                if (!badge.textContent.trim().toLowerCase().includes('confirmed')) {
+                    badge.addEventListener('click', function() {
+                        const registrationId = this.dataset.registrationId;
+                        updateStatus(registrationId, this);
+                    });
+                }
+            });
+            
+            // Function to update status
+            function updateStatus(registrationId, element) {
+                // Show loading indication
+                const originalText = element.innerHTML;
+                element.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                
+                // Create form data
+                const formData = new FormData();
+                formData.append('registration_id', registrationId);
+                formData.append('new_status', 'confirmed');
+                
+                // Send AJAX request
+                fetch('update_status.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the UI
+                        element.innerHTML = 'Confirmed';
+                        element.classList.remove('bg-yellow-500/20', 'text-yellow-400');
+                        element.classList.add('bg-green-500/20', 'text-green-400');
+                        
+                        // Remove click event
+                        element.removeEventListener('click', updateStatus);
+                        element.style.cursor = 'default';
+                        
+                        // Show success toast
+                        showToast('Status updated successfully!', 'success');
+                    } else {
+                        // Show error and revert
+                        element.innerHTML = originalText;
+                        showToast('Error: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    element.innerHTML = originalText;
+                    showToast('Error updating status', 'error');
+                });
+            }
+            
+            // Toast notification function
+            function showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                const toastMessage = document.getElementById('toast-message');
+                
+                // Set message and style based on type
+                toastMessage.textContent = message;
+                
+                if (type === 'success') {
+                    toast.style.borderLeft = '4px solid #10B981';
+                } else {
+                    toast.style.borderLeft = '4px solid #EF4444';
+                }
+                
+                // Show the toast
+                toast.classList.add('show');
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
 
     <?php mysqli_close($connection); ?>
 </body>
